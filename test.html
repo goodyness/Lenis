@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lenis — Color Preview</title>
+
+  <style>
+    :root {
+      --bg: #f8fafc;
+      --surface: #ffffff;
+      --surface-2: #f1f5f9;
+
+      --navy: #0b1220;
+      --navy-light: #111c33;
+
+      --primary: #3b82f6;
+      --primary-hover: #2563eb;
+      --cyan: #22d3ee;
+
+      --text: #0f172a;
+      --muted: #64748b;
+      --border: #e2e8f0;
+
+      --success: #22c55e;
+      --warning: #f59e0b;
+      --danger: #ef4444;
+
+      --shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+    }
+
+    body.dark {
+      --bg: #060b14;
+      --surface: #0b1220;
+      --surface-2: #111c33;
+
+      --text: #f8fafc;
+      --muted: #94a3b8;
+      --border: #1e293b;
+
+      --shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family:
+        Inter,
+        ui-sans-serif,
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+
+      background: var(--bg);
+      color: var(--text);
+      transition: background 0.25s ease, color 0.25s ease;
+    }
+
+    /* NAVBAR */
+
+    nav {
+      height: 70px;
+      background: var(--navy);
+      color: white;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      padding: 0 7%;
+    }
+
+    .logo {
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+    }
+
+    .logo span {
+      color: var(--cyan);
+    }
+
+    nav .links {
+      display: flex;
+      gap: 28px;
+      align-items: center;
+    }
+
+    nav a {
+      color: #cbd5e1;
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    nav a:hover {
+      color: white;
+    }
+
+    /* PAGE */
+
+    .container {
+      width: min(1100px, 90%);
+      margin: 50px auto;
+    }
+
+    .hero {
+      margin-bottom: 40px;
+    }
+
+    .hero h1 {
+      font-size: clamp(32px, 5vw, 54px);
+      line-height: 1;
+      letter-spacing: -2px;
+      margin: 0 0 16px;
+    }
+
+    .hero h1 span {
+      color: var(--primary);
+    }
+
+    .hero p {
+      color: var(--muted);
+      max-width: 600px;
+      font-size: 17px;
+      line-height: 1.7;
+    }
+
+    /* CARDS */
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-bottom: 30px;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 24px;
+      box-shadow: var(--shadow);
+    }
+
+    .card-label {
+      color: var(--muted);
+      font-size: 13px;
+      margin-bottom: 10px;
+    }
+
+    .card-value {
+      font-size: 30px;
+      font-weight: 800;
+      letter-spacing: -1px;
+    }
+
+    .positive {
+      color: var(--success);
+      font-size: 13px;
+      margin-top: 8px;
+    }
+
+    /* BUTTONS */
+
+    .actions {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 35px;
+      flex-wrap: wrap;
+    }
+
+    button {
+      border: none;
+      cursor: pointer;
+      font: inherit;
+      font-weight: 600;
+      border-radius: 10px;
+      padding: 12px 18px;
+      transition: 0.2s ease;
+    }
+
+    .primary {
+      background: var(--primary);
+      color: white;
+    }
+
+    .primary:hover {
+      background: var(--primary-hover);
+      transform: translateY(-1px);
+    }
+
+    .secondary {
+      background: var(--surface-2);
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+
+    .secondary:hover {
+      border-color: var(--primary);
+    }
+
+    /* PANEL */
+
+    .panel {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 25px;
+      box-shadow: var(--shadow);
+    }
+
+    .panel-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 25px;
+    }
+
+    .panel-header h2 {
+      margin: 0;
+      font-size: 18px;
+    }
+
+    .badge {
+      background: rgba(59, 130, 246, 0.12);
+      color: var(--primary);
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    /* CHART */
+
+    .chart {
+      height: 220px;
+      display: flex;
+      align-items: end;
+      gap: 12px;
+      padding-top: 20px;
+    }
+
+    .bar {
+      flex: 1;
+      background: linear-gradient(
+        to top,
+        var(--primary),
+        var(--cyan)
+      );
+
+      border-radius: 7px 7px 2px 2px;
+      min-height: 20px;
+      opacity: 0.9;
+    }
+
+    /* STATUS */
+
+    .statuses {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 25px;
+    }
+
+    .status {
+      padding: 9px 13px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .success {
+      background: rgba(34, 197, 94, 0.12);
+      color: var(--success);
+    }
+
+    .warning {
+      background: rgba(245, 158, 11, 0.12);
+      color: var(--warning);
+    }
+
+    .danger {
+      background: rgba(239, 68, 68, 0.12);
+      color: var(--danger);
+    }
+
+    /* TOGGLE */
+
+    .theme-toggle {
+      position: fixed;
+      right: 25px;
+      bottom: 25px;
+
+      width: 50px;
+      height: 50px;
+
+      border-radius: 50%;
+      padding: 0;
+
+      background: var(--navy);
+      color: white;
+
+      display: grid;
+      place-items: center;
+
+      box-shadow: var(--shadow);
+      font-size: 20px;
+    }
+
+    /* MOBILE */
+
+    @media (max-width: 750px) {
+      .cards {
+        grid-template-columns: 1fr;
+      }
+
+      nav {
+        padding: 0 5%;
+      }
+
+      nav .links {
+        display: none;
+      }
+
+      .container {
+        margin-top: 35px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav>
+    <div class="logo">
+      Lenis<span>.</span>
+    </div>
+
+    <div class="links">
+      <a href="#">Dashboard</a>
+      <a href="#">Transactions</a>
+      <a href="#">Analytics</a>
+      <a href="#">Settings</a>
+    </div>
+
+    <button class="secondary" onclick="toggleTheme()">
+      Theme
+    </button>
+  </nav>
+
+
+  <main class="container">
+
+    <section class="hero">
+      <h1>
+        Welcome to <span>Lenis.</span>
+      </h1>
+
+      <p>
+        A clean preview of the Deep Navy and Electric Blue
+        design system. Switch between light and dark mode
+        to see how the palette behaves.
+      </p>
+    </section>
+
+
+    <section class="cards">
+
+      <div class="card">
+        <div class="card-label">Total Balance</div>
+        <div class="card-value">$24,500</div>
+        <div class="positive">↑ 12.4% this month</div>
+      </div>
+
+      <div class="card">
+        <div class="card-label">Transactions</div>
+        <div class="card-value">1,284</div>
+        <div class="positive">↑ 8.2% this month</div>
+      </div>
+
+      <div class="card">
+        <div class="card-label">Available Funds</div>
+        <div class="card-value">$8,420</div>
+        <div class="positive">↑ 4.8% this month</div>
+      </div>
+
+    </section>
+
+
+    <div class="actions">
+      <button class="primary">
+        + New Transaction
+      </button>
+
+      <button class="secondary">
+        View Analytics
+      </button>
+
+      <button class="secondary">
+        Export Report
+      </button>
+    </div>
+
+
+    <section class="panel">
+
+      <div class="panel-header">
+        <h2>Performance Overview</h2>
+        <span class="badge">This Month</span>
+      </div>
+
+      <div class="chart">
+        <div class="bar" style="height: 35%"></div>
+        <div class="bar" style="height: 50%"></div>
+        <div class="bar" style="height: 42%"></div>
+        <div class="bar" style="height: 68%"></div>
+        <div class="bar" style="height: 55%"></div>
+        <div class="bar" style="height: 78%"></div>
+        <div class="bar" style="height: 92%"></div>
+      </div>
+
+      <div class="statuses">
+        <div class="status success">
+          ● Successful
+        </div>
+
+        <div class="status warning">
+          ● Pending
+        </div>
+
+        <div class="status danger">
+          ● Failed
+        </div>
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <button
+    class="theme-toggle"
+    onclick="toggleTheme()"
+    id="themeButton"
+    aria-label="Toggle theme"
+  >
+    ☾
+  </button>
+
+
+  <script>
+    function toggleTheme() {
+      document.body.classList.toggle("dark");
+
+      const isDark =
+        document.body.classList.contains("dark");
+
+      document.getElementById("themeButton").textContent =
+        isDark ? "☀" : "☾";
+    }
+  </script>
+
+</body>
+</html>

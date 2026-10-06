@@ -1,0 +1,57 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Your Lenis Security Verification Code</title>
+</head>
+<body style="margin:0;padding:0;background-color:#f4f4f5;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background-color:#f4f4f5;padding:24px 16px;">
+    <tr>
+      <td align="center">
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:560px;background-color:#ffffff;border-radius:8px;border:1px solid #e4e4e7;overflow:hidden;">
+          <!-- Header -->
+          <tr>
+            <td style="background-color:#09090b;padding:24px 16px;">
+              <p style="margin:0;font-size:20px;font-weight:700;color:#ffffff;letter-spacing:-0.3px;">Lenis</p>
+              <p style="margin:4px 0 0;font-size:12px;color:#a1a1aa;letter-spacing:0.5px;text-transform:uppercase;">Security Verification</p>
+            </td>
+          </tr>
+          <!-- Body -->
+          <tr>
+            <td style="padding:28px 16px;">
+              <h1 style="margin:0 0 8px;font-size:22px;font-weight:600;color:#09090b;line-height:1.3;">Security Verification Code</h1>
+              <p style="margin:0 0 20px;font-size:15px;color:#52525b;line-height:1.6;">
+                Hi {{ name }}, use the 6-digit one-time code below to authorize your request: <strong>{{ action }}</strong>.
+              </p>
+
+              <!-- OTP Code Display -->
+              <table role="presentation" cellpadding="0" cellspacing="0" style="margin:0 0 24px;width:100%;">
+                <tr>
+                  <td align="center" style="background-color:#f8fafc;border:2px dashed #cbd5e1;border-radius:8px;padding:18px 24px;">
+                    <p style="margin:0;font-size:32px;font-weight:800;letter-spacing:8px;color:#0f172a;font-family:monospace;">
+                      {{ otp }}
+                    </p>
+                  </td>
+                </tr>
+              </table>
+
+              <p style="margin:0 0 16px;font-size:13px;color:#64748b;line-height:1.5;">
+                This code will expire in <strong>10 minutes</strong>. Never share this code with anyone. Lenis staff will never ask for your verification code.
+              </p>
+            </td>
+          </tr>
+          <!-- Footer -->
+          <tr>
+            <td style="background-color:#fafafa;border-top:1px solid #e4e4e7;padding:16px 20px;">
+              <p style="margin:0;font-size:12px;color:#a1a1aa;line-height:1.5;">
+                If you did not initiate this action, someone may be attempting to access your account credentials. Please secure your account immediately.
+              </p>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>10 Minutes Remaining: Complete Your Subscription Payment - Lenis</title>
+</head>
+<body style="margin:0;padding:0;background-color:#f4f4f5;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background-color:#f4f4f5;padding:24px 16px;">
+    <tr>
+      <td align="center">
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:560px;background-color:#ffffff;border-radius:8px;border:1px solid #e4e4e7;overflow:hidden;">
+          <tr>
+            <td style="background-color:#09090b;padding:24px 16px;">
+              <p style="margin:0;font-size:20px;font-weight:700;color:#ffffff;letter-spacing:-0.3px;">Lenis</p>
+              <p style="margin:4px 0 0;font-size:12px;color:#a1a1aa;letter-spacing:0.5px;text-transform:uppercase;">Billing Alert</p>
+            </td>
+          </tr>
+          <tr>
+            <td style="padding:28px 16px;">
+              <table role="presentation" cellpadding="0" cellspacing="0" style="margin:0 0 20px;">
+                <tr>
+                  <td style="background-color:#fef3c7;border:1px solid #fde68a;border-radius:6px;padding:6px 12px;">
+                    <p style="margin:0;font-size:13px;font-weight:600;color:#92400e;">
+                      &#9201;&nbsp; 10 Minutes Remaining
+                    </p>
+                  </td>
+                </tr>
+              </table>
+              <h1 style="margin:0 0 8px;font-size:22px;font-weight:600;color:#09090b;line-height:1.3;">
+                Your {{ tier_name }} payment session is closing soon
+              </h1>
+              <p style="margin:0 0 24px;font-size:15px;color:#52525b;line-height:1.6;">
+                Hi {{ name }}, we noticed that your <strong>{{ tier_name }}</strong> cryptocurrency upgrade has about <strong>10 minutes remaining</strong> before the treasury address lock window expires.
+              </p>
+              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border-collapse:collapse;font-size:14px;margin:0 0 24px;">
+                <tr style="border-bottom:1px solid #f4f4f5;">
+                  <td style="padding:10px 0;color:#71717a;">Target Tier</td>
+                  <td style="padding:10px 0;color:#09090b;text-align:right;font-weight:600;">{{ tier_name }}</td>
+                </tr>
+                <tr style="border-bottom:1px solid #f4f4f5;">
+                  <td style="padding:10px 0;color:#71717a;">Amount Due</td>
+                  <td style="padding:10px 0;color:#09090b;text-align:right;font-weight:700;">{{ crypto_amount }} {{ crypto_token }}</td>
+                </tr>
+                <tr style="border-bottom:1px solid #f4f4f5;">
+                  <td style="padding:10px 0;color:#71717a;">Assigned Network</td>
+                  <td style="padding:10px 0;color:#09090b;text-align:right;text-transform:uppercase;">{{ crypto_network }}</td>
+                </tr>
+                <tr style="border-bottom:1px solid #f4f4f5;">
+                  <td style="padding:10px 0;color:#71717a;">Assigned Wallet</td>
+                  <td style="padding:10px 0;color:#09090b;text-align:right;font-family:monospace;font-size:12px;">{{ assigned_wallet_address }}</td>
+                </tr>
+                <tr>
+                  <td style="padding:10px 0;color:#71717a;">Lock Status</td>
+                  <td style="padding:10px 0;color:#d97706;text-align:right;font-weight:600;">Expiring in ~10 min</td>
+                </tr>
+              </table>
+              <table role="presentation" cellpadding="0" cellspacing="0" style="margin:0 0 24px;">
+                <tr>
+                  <td style="background-color:#4f46e5;border-radius:6px;">
+                    <a href="{{ resume_url or 'http://localhost:5173/dashboard/settings?tab=billing' }}"
+                       style="display:inline-block;padding:12px 24px;font-size:14px;font-weight:600;color:#ffffff;text-decoration:none;letter-spacing:0.1px;">
+                      Complete Payment &rarr;
+                    </a>
+                  </td>
+                </tr>
+              </table>
+              <p style="margin:0;font-size:13px;color:#71717a;line-height:1.5;">
+                If you already sent your transaction on-chain, you can visit your dashboard to paste your transaction hash for instant verification.
+              </p>
+            </td>
+          </tr>
+          <tr>
+            <td style="padding:16px 16px;border-top:1px solid #e4e4e7;">
+              <p style="margin:0;font-size:12px;color:#a1a1aa;line-height:1.5;">
+                &copy; Lenis Non-Custodial Infrastructure. All rights reserved.
+              </p>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>

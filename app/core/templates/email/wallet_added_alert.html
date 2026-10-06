@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Security Alert: Settlement Wallet Added - Lenis</title>
+</head>
+<body style="margin:0;padding:0;background-color:#f4f4f5;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background-color:#f4f4f5;padding:24px 16px;">
+    <tr>
+      <td align="center">
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:560px;background-color:#ffffff;border-radius:8px;border:1px solid #e4e4e7;overflow:hidden;">
+
+          <!-- Header -->
+          <tr>
+            <td style="background-color:#09090b;padding:24px 16px;">
+              <p style="margin:0;font-size:20px;font-weight:700;color:#ffffff;letter-spacing:-0.3px;">Lenis</p>
+              <p style="margin:4px 0 0;font-size:12px;color:#a1a1aa;letter-spacing:0.5px;text-transform:uppercase;">Security Notification</p>
+            </td>
+          </tr>
+
+          <!-- Body -->
+          <tr>
+            <td style="padding:28px 16px;">
+              <!-- Badge -->
+              <table role="presentation" cellpadding="0" cellspacing="0" style="margin:0 0 20px;">
+                <tr>
+                  <td style="background-color:#eff6ff;border:1px solid #bfdbfe;border-radius:6px;padding:6px 12px;">
+                    <p style="margin:0;font-size:13px;font-weight:600;color:#1d4ed8;">&#128274;&nbsp; Payout Wallet Configured</p>
+                  </td>
+                </tr>
+              </table>
+
+              <h1 style="margin:0 0 8px;font-size:22px;font-weight:600;color:#09090b;line-height:1.3;">A new settlement wallet was added</h1>
+              <p style="margin:0 0 24px;font-size:15px;color:#52525b;line-height:1.6;">
+                Hi {{ merchant_name }}, a new crypto receiving address was configured on your Lenis merchant account. Future customer payments for this network will settle to this address.
+              </p>
+
+              <!-- Wallet Details Table -->
+              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border-collapse:collapse;font-size:14px;margin:0 0 24px;">
+                {% if label %}
+                <tr style="border-bottom:1px solid #f4f4f5;">
+                  <td style="padding:10px 0;color:#71717a;">Wallet Label</td>
+                  <td style="padding:10px 0;color:#09090b;text-align:right;font-weight:500;">{{ label }}</td>
+                </tr>
+                {% endif %}
+                <tr style="border-bottom:1px solid #f4f4f5;">
+                  <td style="padding:10px 0;color:#71717a;">Network / Chain</td>
+                  <td style="padding:10px 0;color:#09090b;text-align:right;font-weight:500;">{{ network }}</td>
+                </tr>
+                <tr style="border-bottom:1px solid #f4f4f5;">
+                  <td style="padding:10px 0;color:#71717a;">Wallet Address</td>
+                  <td style="padding:10px 0;color:#09090b;text-align:right;font-family:monospace;font-size:12px;word-break:break-all;">{{ address }}</td>
+                </tr>
+                <tr>
+                  <td style="padding:10px 0;color:#71717a;">Added At</td>
+                  <td style="padding:10px 0;color:#09090b;text-align:right;">{{ date_str }}</td>
+                </tr>
+              </table>
+
+              <!-- Warning Box -->
+              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background-color:#fef2f2;border:1px solid #fee2e2;border-radius:6px;margin:0 0 24px;">
+                <tr>
+                  <td style="padding:14px 12px;">
+                    <p style="margin:0;font-size:13px;color:#991b1b;line-height:1.5;">
+                      <strong>Did not perform this action?</strong> If you did not add this payout wallet, please revoke API keys, change your password, and contact support immediately.
+                    </p>
+                  </td>
+                </tr>
+              </table>
+
+              <!-- CTA Button -->
+              <table role="presentation" cellpadding="0" cellspacing="0" style="margin:0;">
+                <tr>
+                  <td style="background-color:#09090b;border-radius:6px;">
+                    <a href="{{ security_url }}"
+                       style="display:inline-block;padding:12px 24px;font-size:14px;font-weight:600;color:#ffffff;text-decoration:none;letter-spacing:0.1px;">
+                      Manage Wallets &amp; Security
+                    </a>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- Footer -->
+          <tr>
+            <td style="padding:16px 16px;border-top:1px solid #e4e4e7;">
+              <p style="margin:0;font-size:12px;color:#a1a1aa;line-height:1.5;">
+                Lenis Security System &bull; Automated Account Activity Alert
+              </p>
+            </td>
+          </tr>
+
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>

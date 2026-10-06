@@ -1,0 +1,4 @@
+no ai artifact in code, in front end template, avoid long dashes --, no ai artifact, always build in engineerig way, production grade
+
+for development, we will use sqlite, 
+all desing must be neat and communicate financial, 

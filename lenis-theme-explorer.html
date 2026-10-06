@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lenis — Theme Explorer</title>
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#f1f5f9;color:#0f172a}
+.page{max-width:1250px;margin:auto;padding:36px 22px 70px}.intro{text-align:center;margin-bottom:35px}.intro h1{font-size:42px;margin:0 0 10px;letter-spacing:-1.5px}.intro p{color:#64748b;margin:0}
+.theme{margin:30px 0 55px;border-radius:24px;overflow:hidden;box-shadow:0 20px 50px #00000012;border:1px solid #00000012}
+.theme-title{padding:18px 24px;background:#fff;display:flex;justify-content:space-between;align-items:center}.theme-title h2{margin:0;font-size:20px}.theme-title span{font-size:13px;color:#64748b}
+.app{display:grid;grid-template-columns:205px 1fr;min-height:430px}
+.side{padding:25px 18px}.brand{font-size:21px;font-weight:800;margin-bottom:35px}.brand b{opacity:.8}.nav a{display:block;text-decoration:none;padding:11px 13px;border-radius:9px;margin:4px 0;font-size:13px}.nav a.active{font-weight:700}
+.main{padding:30px}.top{display:flex;justify-content:space-between;align-items:center;margin-bottom:25px}.top h3{margin:0;font-size:24px}.avatar{width:36px;height:36px;border-radius:50%;display:grid;place-items:center;font-size:12px;font-weight:800}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.card{padding:19px;border-radius:15px}.label{font-size:12px;opacity:.7}.value{font-size:25px;font-weight:800;margin:7px 0}.change{font-size:11px;font-weight:700}
+.lower{display:grid;grid-template-columns:1.5fr 1fr;gap:14px;margin-top:14px}.panel{padding:19px;border-radius:15px}.panel h4{margin:0 0 20px}.bars{height:135px;display:flex;align-items:end;gap:9px}.bar{flex:1;border-radius:5px 5px 2px 2px;opacity:.9}.transactions div{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid #00000012;font-size:12px}.pill{padding:4px 8px;border-radius:99px;font-size:10px;font-weight:700}
+.palette{padding:16px 24px;background:#fff;display:flex;gap:8px;align-items:center;flex-wrap:wrap}.swatch{height:28px;width:70px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700}
+@media(max-width:800px){.app{grid-template-columns:1fr}.side{display:none}.cards{grid-template-columns:1fr}.lower{grid-template-columns:1fr}.main{padding:20px}.theme-title{align-items:flex-start;gap:10px;flex-direction:column}}
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="intro">
+    <h1>Lenis Theme Explorer</h1>
+    <p>Same interface, five different visual identities. Compare the palettes and pick the direction that feels like Lenis.</p>
+  </div>
+
+  <div id="themes"></div>
+</div>
+
+<script>
+const themes=[
+{name:"Deep Navy + Electric Blue",desc:"Professional · fintech · SaaS",bg:"#f8fafc",side:"#0b1220",sideText:"#cbd5e1",sideActive:"#3b82f6",surface:"#fff",text:"#0f172a",muted:"#64748b",primary:"#3b82f6",accent:"#22d3ee",chart:"#3b82f6",positive:"#22c55e",border:"#e2e8f0",sw:["#0B1220","#111C33","#3B82F6","#22D3EE","#F8FAFC"]},
+{name:"Obsidian + Violet",desc:"Premium · futuristic · sophisticated",bg:"#09090b",side:"#09090b",sideText:"#a1a1aa",sideActive:"#7c3aed",surface:"#18181b",text:"#fafafa",muted:"#a1a1aa",primary:"#7c3aed",accent:"#a78bfa",chart:"#8b5cf6",positive:"#22c55e",border:"#27272a",sw:["#09090B","#18181B","#7C3AED","#A78BFA","#FAFAFA"]},
+{name:"Deep Emerald + Mint",desc:"Wealth · growth · financial",bg:"#f3faf7",side:"#071a14",sideText:"#b7d8cb",sideActive:"#10b981",surface:"#fff",text:"#10231d",muted:"#647a71",primary:"#10b981",accent:"#34d399",chart:"#10b981",positive:"#10b981",border:"#d9ebe4",sw:["#071A14","#0D2B22","#10B981","#34D399","#F3FAF7"]},
+{name:"Charcoal + Amber",desc:"Bold · distinctive · premium",bg:"#f7f7f5",side:"#111111",sideText:"#c9c9c9",sideActive:"#f59e0b",surface:"#fff",text:"#181818",muted:"#737373",primary:"#f59e0b",accent:"#fbbf24",chart:"#f59e0b",positive:"#16a34a",border:"#e5e5e5",sw:["#111111","#1C1C1C","#F59E0B","#FBBF24","#F7F7F5"]},
+{name:"Midnight + Coral",desc:"Startup · energetic · youthful",bg:"#f8fafc",side:"#0f172a",sideText:"#cbd5e1",sideActive:"#f43f5e",surface:"#fff",text:"#111827",muted:"#64748b",primary:"#f43f5e",accent:"#fb7185",chart:"#f43f5e",positive:"#22c55e",border:"#e2e8f0",sw:["#0F172A","#1E293B","#F43F5E","#FB7185","#FFF1F2"]}
+];
+
+function render(t,i){
+ const bars=[35,52,43,68,55,82,94];
+ return `<section class="theme">
+  <div class="theme-title"><h2>${i+1}. ${t.name}</h2><span>${t.desc}</span></div>
+  <div class="app" style="background:${t.bg};color:${t.text}">
+   <aside class="side" style="background:${t.side};color:${t.sideText}">
+    <div class="brand" style="color:white">Lenis<span style="color:${t.accent}">.</span></div>
+    <div class="nav">
+      <a class="active" style="background:${t.sideActive};color:white">Dashboard</a>
+      <a style="color:${t.sideText}">Transactions</a><a style="color:${t.sideText}">Analytics</a><a style="color:${t.sideText}">Settings</a>
+    </div>
+   </aside>
+   <main class="main">
+    <div class="top"><h3>Good evening 👋</h3><div class="avatar" style="background:${t.primary};color:white">JP</div></div>
+    <div class="cards">
+      <div class="card" style="background:${t.surface};border:1px solid ${t.border}"><div class="label">Total Balance</div><div class="value">$24,500</div><div class="change" style="color:${t.positive}">↑ 12.4% this month</div></div>
+      <div class="card" style="background:${t.surface};border:1px solid ${t.border}"><div class="label">Transactions</div><div class="value">1,284</div><div class="change" style="color:${t.positive}">↑ 8.2% this month</div></div>
+      <div class="card" style="background:${t.surface};border:1px solid ${t.border}"><div class="label">Available Funds</div><div class="value">$8,420</div><div class="change" style="color:${t.positive}">↑ 4.8% this month</div></div>
+    </div>
+    <div class="lower">
+      <div class="panel" style="background:${t.surface};border:1px solid ${t.border}"><h4>Performance Overview</h4><div class="bars">${bars.map(h=>`<div class="bar" style="height:${h}%;background:linear-gradient(to top,${t.chart},${t.accent})"></div>`).join("")}</div></div>
+      <div class="panel transactions" style="background:${t.surface};border:1px solid ${t.border}"><h4>Recent Activity</h4>
+       <div><span>Payment received</span><b>+$450</b></div><div><span>Withdrawal</span><b>-$120</b></div><div><span>Transfer</span><b>-$75</b></div>
+      </div>
+    </div>
+   </main>
+  </div>
+  <div class="palette">${t.sw.map((c,j)=>`<div class="swatch" style="background:${c};color:${j===0||j===1?'white':'#111'}">${c}</div>`).join("")}</div>
+ </section>`;
+}
+document.getElementById("themes").innerHTML=themes.map(render).join("");
+</script>
+</body>
+</html>

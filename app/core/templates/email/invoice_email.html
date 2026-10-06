@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Invoice from {{ merchant_name }}</title>
+</head>
+<body style="margin:0;padding:0;background-color:#f4f4f5;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background-color:#f4f4f5;padding:24px 16px;">
+    <tr>
+      <td align="center">
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:560px;background-color:#ffffff;border-radius:8px;border:1px solid #e4e4e7;overflow:hidden;">
+
+          <!-- Header -->
+          <tr>
+            <td style="background-color:#09090b;padding:24px 16px;">
+              <p style="margin:0;font-size:20px;font-weight:700;color:#ffffff;letter-spacing:-0.3px;">Lenis</p>
+              <p style="margin:4px 0 0;font-size:12px;color:#a1a1aa;letter-spacing:0.5px;text-transform:uppercase;">Web3 Financial Infrastructure</p>
+            </td>
+          </tr>
+
+          <!-- Body -->
+          <tr>
+            <td style="padding:28px 16px;">
+              <h1 style="margin:0 0 8px;font-size:22px;font-weight:600;color:#09090b;line-height:1.3;">You have received an invoice</h1>
+              <p style="margin:0 0 24px;font-size:15px;color:#52525b;line-height:1.6;">
+                Hi {{ customer_name }}, <strong>{{ merchant_name }}</strong> has sent you an invoice via the Lenis platform. Please review the details below and complete your payment before the due date.
+              </p>
+
+              <!-- Invoice meta -->
+              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin:0 0 24px;border:1px solid #e4e4e7;border-radius:6px;overflow:hidden;">
+                <tr>
+                  <td style="padding:12px 16px;background-color:#fafafa;border-bottom:1px solid #e4e4e7;">
+                    <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
+                      <tr>
+                        <td style="font-size:12px;font-weight:600;color:#71717a;text-transform:uppercase;letter-spacing:0.5px;">Invoice ID</td>
+                        <td align="right" style="font-size:13px;color:#09090b;font-family:'Courier New',Courier,monospace;">{{ invoice_id }}</td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="padding:12px 16px;border-bottom:1px solid #e4e4e7;">
+                    <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
+                      <tr>
+                        <td style="font-size:12px;font-weight:600;color:#71717a;text-transform:uppercase;letter-spacing:0.5px;">Due Date</td>
+                        <td align="right" style="font-size:13px;color:#09090b;font-weight:600;">{{ due_date }}</td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="padding:12px 16px;">
+                    <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
+                      <tr>
+                        <td style="font-size:12px;font-weight:600;color:#71717a;text-transform:uppercase;letter-spacing:0.5px;">From</td>
+                        <td align="right" style="font-size:13px;color:#09090b;">{{ merchant_name }}</td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+              </table>
+
+              <!-- Line items table -->
+              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin:0 0 4px;border:1px solid #e4e4e7;border-radius:6px;overflow:hidden;">
+                <!-- Header row -->
+                <tr>
+                  <td style="padding:10px 16px;background-color:#fafafa;border-bottom:1px solid #e4e4e7;">
+                    <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
+                      <tr>
+                        <td style="font-size:12px;font-weight:600;color:#71717a;text-transform:uppercase;letter-spacing:0.5px;">Description</td>
+                        <td align="right" style="font-size:12px;font-weight:600;color:#71717a;text-transform:uppercase;letter-spacing:0.5px;">Amount</td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+                <!-- Line items -->
+                {% for item in line_items %}
+                <tr>
+                  <td style="padding:12px 16px;{% if not loop.last %}border-bottom:1px solid #f4f4f5;{% endif %}">
+                    <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
+                      <tr>
+                        <td style="font-size:14px;color:#09090b;line-height:1.4;">{{ item.description }}</td>
+                        <td align="right" style="font-size:14px;color:#09090b;white-space:nowrap;">{{ item.amount }}</td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+                {% endfor %}
+              </table>
+
+              <!-- Total row -->
+              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin:0 0 24px;border:1px solid #e4e4e7;border-top:none;border-radius:0 0 6px 6px;overflow:hidden;background-color:#09090b;">
+                <tr>
+                  <td style="padding:14px 16px;">
+                    <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
+                      <tr>
+                        <td style="font-size:14px;font-weight:700;color:#ffffff;">Total</td>
+                        <td align="right" style="font-size:16px;font-weight:700;color:#ffffff;">{{ total_amount }}</td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+              </table>
+
+              {% if notes %}
+              <!-- Merchant notes -->
+              <div style="margin:0 0 24px;padding:12px 16px;background-color:#fafafa;border:1px solid #e4e4e7;border-radius:6px;">
+                <p style="margin:0 0 4px;font-size:12px;font-weight:600;color:#71717a;text-transform:uppercase;letter-spacing:0.5px;">Notes from merchant</p>
+                <p style="margin:0;font-size:13px;color:#52525b;line-height:1.5;">{{ notes }}</p>
+              </div>
+              {% endif %}
+
+              <!-- CTA Button -->
+              <table role="presentation" cellpadding="0" cellspacing="0" style="margin:0 0 24px;">
+                <tr>
+                  <td style="background-color:#09090b;border-radius:6px;">
+                    <a href="{{ payment_url if payment_url is defined else '#' }}"
+                       style="display:inline-block;padding:12px 24px;font-size:14px;font-weight:600;color:#ffffff;text-decoration:none;letter-spacing:0.1px;">
+                      Pay invoice now
+                    </a>
+                  </td>
+                </tr>
+              </table>
+
+              <!-- Expiry notice -->
+              <p style="margin:0;font-size:13px;color:#71717a;line-height:1.5;">
+                Payment is due by <strong>{{ due_date }}</strong>. Once submitted on-chain, your payment is automatically verified and confirmed.
+              </p>
+            </td>
+          </tr>
+
+          <!-- Footer -->
+          <tr>
+            <td style="padding:16px 16px;border-top:1px solid #e4e4e7;">
+              <p style="margin:0;font-size:12px;color:#a1a1aa;line-height:1.5;">
+                This invoice was generated by {{ merchant_name }} via the Lenis platform.
+              </p>
+            </td>
+          </tr>
+
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>

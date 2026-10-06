@@ -1,0 +1,66 @@
+# Environment variables (secrets — never commit)
+.env
+.env.*
+!.env.example
+
+# Python bytecode
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Virtual environments
+venv/
+.venv/
+env/
+.env/
+
+# Local SQLite databases
+*.db
+*.sqlite
+*.sqlite3
+
+# Uploaded files (user KYC docs, branding, etc.)
+uploads/
+
+# Celery beat schedule files
+celerybeat-schedule.bak
+celerybeat-schedule.dat
+celerybeat-schedule.dir
+celerybeat-schedule
+
+# Pytest / Hypothesis
+.pytest_cache/
+.hypothesis/
+
+# Coverage
+.coverage
+htmlcov/
+coverage.xml
+
+# Distribution / build
+dist/
+build/
+*.egg-info/
+
+# Node / frontend & SDKs
+node_modules/
+frontend/node_modules/
+frontend/dist/
+frontend/.env
+frontend/.env.*
+!frontend/.env.example
+sdks/typescript/node_modules/
+sdks/typescript/dist/
+
+# IDE / editor
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
